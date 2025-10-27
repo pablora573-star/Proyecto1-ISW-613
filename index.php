@@ -9,24 +9,94 @@
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Aventones</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ffffffff;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            color: black;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #0d00ffff;
+        }
+        .register-links {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .register-links p {
+            color: #000000ff;
+            margin-bottom: 10px;
+        }
+        .register-links a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 8px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            color: white;
+            font-weight: bold;
+        }
+        .register-links a.pasajero {
+            background-color: #45a049;
+        }
+        .register-links a.chofer {
+            background-color: #FF9800;
+        }
+    </style>
 </head>
 <body>
-  <h1>Login</h1>
-  <form action="actions/login.php" method="post">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required>
-    <br>
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required>
-    <br>
-    <button type="submit">Login</button>
-
-    <p>¿No tienes una cuenta? <a href="pages/registration.php">Register here</a></p>
-  </form>
+    <div class="login-container">
+        <h1>Aventones</h1>
+        <form action="/actions/login.php" method="post">
+            <input type="cedula" name="cedula" placeholder="Cedula" required>
+            <input type="password" name="password" placeholder="Contraseña" required>
+            <button type="submit">Iniciar Sesión</button>
+        </form>
+        
+        <div class="register-links">
+            <p>¿No tienes cuenta?<br> Regístrate como:</p>
+            <a href="./pages/registration_pasajero.php" class="pasajero">Pasajero</a>
+            <a href="./pages/registration_chofer.php" class="chofer">Chofer</a>
+        </div>
+    </div>
 </body>
 </html>
