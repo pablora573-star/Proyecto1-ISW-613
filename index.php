@@ -1,11 +1,32 @@
 <?php
   //check if user is logged in
   //if not, redirect to login page
+
   session_start();
-  if (isset($_SESSION['username'])) {
+  if (isset($_SESSION['cedula'])) {
       header("Location: /pages/dashboard.php");
       exit();
   }
+
+  $error_message = "";
+    if (isset($_GET['error'])) {
+        switch ($_GET['error']) {
+            case "cuenta_pendiente":
+                $error_message = "⚠️ Tu cuenta está pendiente de aprobación. Por favor espera la activación.";
+                break;
+            case "cuenta_inactiva":
+                $error_message = "🚫 Tu cuenta está inactiva. Contacta con el administrador.";
+                break;
+            case "credenciales_invalidas":
+                $error_message = "❌ Cédula o contraseña incorrecta.";
+                break;
+            case "estado_invalido":
+                $error_message = "⚠️ El estado de tu cuenta no es válido.";
+                break;
+            default:
+                $error_message = "";
+        }
+    }
 
 ?>
 <!DOCTYPE html>
@@ -86,7 +107,7 @@
 <body>
     <div class="login-container">
         <h1>Aventones</h1>
-        <form action="/actions/login.php" method="post">
+        <form action="/Proyecto1-ISW-613/actions/login.php" method="post">
             <input type="cedula" name="cedula" placeholder="Cedula" required>
             <input type="password" name="password" placeholder="Contraseña" required>
             <button type="submit">Iniciar Sesión</button>
