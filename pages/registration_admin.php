@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -130,7 +131,7 @@
         <h2>Aventones</h2>
         <div class="nav-links">
             <!--<a href="/register_pasajero.php" class="btn-primary">Registrar Admin</a>-->
-            <a href="/Proyecto1-ISW-613/index.php">Volver al Login</a>
+            <a href="/actions/logout.php">Volver al Login</a>
         </div>
     </nav>
 
