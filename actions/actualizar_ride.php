@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validar datos
     if (empty($nombre) || empty($origen) || empty($destino) || empty($fecha_viaje) || 
         empty($hora_viaje) || $costo_espacio < 0 || $cantidad_espacios < 1 || $vehicle_id < 1) {
-        header("Location: /pages/editar_ride.php?id=$ride_id&error=invalid_data");
+        header("Location: ./pages/editar_ride.php?id=$ride_id&error=invalid_data");
         exit();
     }
     
@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (mysqli_num_rows($resultCheck) === 0) {
         mysqli_stmt_close($stmtCheck);
         mysqli_close($conn);
-        header("Location: /pages/dashboard_chofer.php?error=unauthorized");
+        header("Location: ./pages/dashboard_chofer.php?error=unauthorized");
         exit();
     }
     mysqli_stmt_close($stmtCheck);
@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (mysqli_num_rows($resultCheckVehicle) === 0) {
         mysqli_stmt_close($stmtCheckVehicle);
         mysqli_close($conn);
-        header("Location: /pages/editar_ride.php?id=$ride_id&error=invalid_vehicle");
+        header("Location: ./pages/editar_ride.php?id=$ride_id&error=invalid_vehicle");
         exit();
     }
     mysqli_stmt_close($stmtCheckVehicle);
@@ -88,17 +88,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (mysqli_stmt_execute($stmt)) {
         mysqli_stmt_close($stmt);
         mysqli_close($conn);
-        header("Location: /pages/dashboard_chofer.php?success=ride_updated");
+        header("Location: ./pages/dashboard_chofer.php?success=ride_updated");
         exit();
     } else {
         mysqli_stmt_close($stmt);
         mysqli_close($conn);
-        header("Location: /pages/editar_ride.php?id=$ride_id&error=update_failed");
+        header("Location: ./pages/editar_ride.php?id=$ride_id&error=update_failed");
         exit();
     }
     
 } else {
-    header("Location: /pages/dashboard_chofer.php");
+    header("Location: ./pages/dashboard_chofer.php");
     exit();
 }
 ?>

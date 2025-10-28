@@ -130,7 +130,7 @@
         <h2>Aventones</h2>
         <div class="nav-links">
             <a href="./registration_chofer.php" class="btn-primary">Registrar Chofer</a>
-            <a href="/Proyecto1-ISW-613/index.php">Volver al Login</a>
+            <a href="../index.php">Volver al Login</a>
         </div>
     </nav>
 
@@ -138,7 +138,7 @@
         <h1>Registro de Usuario</h1>
         <p class="subtitle">Registrándose como: <span class="badge">PASAJERO</span></p>
         
-        <form action="/actions/insertUser.php" method="post" enctype="multipart/form-data">
+        <form action="./actions/insertUser.php" method="post" enctype="multipart/form-data">
            
             <!-- Campo oculto con el rol quemado -->
             <input type="hidden" name="rol" value="pasajero">

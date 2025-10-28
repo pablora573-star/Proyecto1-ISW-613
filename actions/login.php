@@ -39,9 +39,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 mysqli_close($conn);
                 
                 if ($row['rol'] === 'chofer') {
-                    header("Location: /pages/dashboard_chofer.php");
+                    header("Location: ./pages/dashboard_chofer.php");
                 } else {
-                    header("Location: /pages/dashboard_pasajero.php");
+                    header("Location: ./pages/dashboard_pasajero.php");
                 }
                 exit();
                 
@@ -49,21 +49,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // CUENTA PENDIENTE - No permitir login
                 mysqli_stmt_close($stmt);
                 mysqli_close($conn);
-                header("Location: ./index.php?error=cuenta_pendiente");
+                header("Location: ../index.php?error=cuenta_pendiente");
                 exit();
                 
             } elseif ($row['estado'] === 'inactivo') {
                 // CUENTA INACTIVA - No permitir login
                 mysqli_stmt_close($stmt);
                 mysqli_close($conn);
-                header("Location: ./index.php?error=cuenta_inactiva");
+                header("Location: ../index.php?error=cuenta_inactiva");
                 exit();
                 
             } else {
                 // Estado desconocido
                 mysqli_stmt_close($stmt);
                 mysqli_close($conn);
-                header("Location: ./index.php?error=estado_invalido");
+                header("Location: ../index.php?error=estado_invalido");
                 exit();
             }
             
@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Contraseña incorrecta
             mysqli_stmt_close($stmt);
             mysqli_close($conn);
-            header("Location: ./index.php?error=credenciales_invalidas");
+            header("Location: ../index.php?error=credenciales_invalidas");
             exit();
         }
         
@@ -79,12 +79,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //  Usuario no encontrado
         mysqli_stmt_close($stmt);
         mysqli_close($conn);
-        header("Location: ./index.php?error=credenciales_invalidas");
+        header("Location: ../index.php?error=credenciales_invalidas");
         exit();
     }
 
 } else {
-    header("Location: ./index.php");
+    header("Location: ../index.php");
     exit();
 }
 ?>

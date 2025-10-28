@@ -3,13 +3,13 @@ session_start();
 
 // Verificar que el usuario esté logueado y sea chofer
 if (!isset($_SESSION['user_id']) || $_SESSION['rol'] !== 'chofer') {
-    header("Location: /index.php?error=sesion_expirada");
+    header("Location: ../index.php?error=sesion_expirada");
     exit();
 }
 
-$currentDir = dirname(__FILE__);
-$parentDir = dirname($currentDir);
-include($parentDir . '/common/connection.php');
+//$currentDir = dirname(__FILE__);
+//$parentDir = dirname($currentDir);
+include('./common/connection.php');
 
 $user_id = $_SESSION['user_id'];
 $nombre = $_SESSION['nombre'];
@@ -153,8 +153,8 @@ mysqli_close($conn);
     <nav>
         <h2>Aventones - Dashboard Chofer</h2>
         <div class="nav-links">
-            <a href="/pages/vehiculos.php">Mis Vehículos</a>
-            <a href="/actions/logout.php">Cerrar Sesión</a>
+            <a href="./vehiculos.php">Mis Vehículos</a>
+            <a href="./actions/logout.php">Cerrar Sesión</a>
         </div>
     </nav>
 
@@ -193,7 +193,7 @@ mysqli_close($conn);
             }
             ?>
 
-            <a href="/pages/crear_ride.php" class="btn">Crear Nuevo Ride</a>
+            <a href="./crear_ride.php" class="btn">Crear Nuevo Ride</a>
             
             <?php 
               if (mysqli_num_rows($resultRides) > 0): ?>
@@ -229,8 +229,8 @@ mysqli_close($conn);
                             <td>₡<?= number_format($ride['costo_espacio'], 0) ?></td>
                             <td><?= $ride['cantidad_espacios'] ?></td>
                             <td class="actions">
-                                <a href="/pages/editar_ride.php?id=<?= $ride['id'] ?>">Editar</a>
-                                <a href="/actions/eliminar_ride.php?id=<?= $ride['id'] ?>" 
+                                <a href="./editar_ride.php?id=<?= $ride['id'] ?>">Editar</a>
+                                <a href="./actions/eliminar_ride.php?id=<?= $ride['id'] ?>" 
                                    class="delete" 
                                    onclick="return confirm('¿Estás seguro de eliminar este ride?')">Eliminar</a>
                             </td>

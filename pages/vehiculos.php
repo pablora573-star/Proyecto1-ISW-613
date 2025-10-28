@@ -3,7 +3,7 @@ session_start();
 
 // Verificar que el usuario esté logueado y sea chofer
 if (!isset($_SESSION['user_id']) || $_SESSION['rol'] !== 'chofer') {
-    header("Location: /index.php?error=sesion_expirada");
+    header("Location: ../index.php?error=sesion_expirada");
     exit();
 }
 
@@ -159,8 +159,8 @@ mysqli_close($conn);
     <nav>
         <h2> Aventones - Mis Vehículos</h2>
         <div class="nav-links">
-            <a href="/pages/dashboard_chofer.php">Dashboard</a>
-            <a href="/actions/logout.php">Cerrar Sesión</a>
+            <a href="./dashboard_chofer.php">Dashboard</a>
+            <a href="./actions/logout.php">Cerrar Sesión</a>
         </div>
     </nav>
 
@@ -194,7 +194,7 @@ mysqli_close($conn);
             }
             ?>
             
-            <a href="/pages/crear_vehiculo.php" class="btn"> Registrar Nuevo Vehículo</a>
+            <a href="./crear_vehiculo.php" class="btn"> Registrar Nuevo Vehículo</a>
             
             <?php if (mysqli_num_rows($resultVehicles) > 0): ?>
                 <table>
@@ -228,8 +228,8 @@ mysqli_close($conn);
                             <td><?= htmlspecialchars($vehicle['color']) ?></td>
                             <td><?= $vehicle['capacidad_asientos'] ?> asientos</td>
                             <td class="actions">
-                                <a href="/pages/editar_vehiculo.php?id=<?= $vehicle['id'] ?>">Editar</a>
-                                <a href="/actions/eliminar_vehiculo.php?id=<?= $vehicle['id'] ?>" 
+                                <a href="./editar_vehiculo.php?id=<?= $vehicle['id'] ?>">Editar</a>
+                                <a href="./actions/eliminar_vehiculo.php?id=<?= $vehicle['id'] ?>" 
                                    class="delete" 
                                    onclick="return confirm('¿Estás seguro de eliminar este vehículo?')">Eliminar</a>
                             </td>

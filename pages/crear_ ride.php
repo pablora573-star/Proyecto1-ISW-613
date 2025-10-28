@@ -1,13 +1,13 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_id']) || $_SESSION['rol'] !== 'chofer') {
-    header("Location: /index.php");
+    header("Location: ../index.php");
     exit();
 }
 
-$currentDir = dirname(__FILE__);
-$parentDir = dirname($currentDir);
-include($parentDir . '/common/connection.php');
+//$currentDir = dirname(__FILE__);
+//$parentDir = dirname($currentDir);
+include('./common/connection.php');
 
 $user_id = $_SESSION['user_id'];
 
@@ -142,7 +142,7 @@ mysqli_close($conn);
     <nav>
         <h2> Aventones - Crear Ride</h2>
         <div class="nav-links">
-            <a href="/pages/dashboard_chofer.php">← Volver al Dashboard</a>
+            <a href="./dashboard_chofer.php">← Volver al Dashboard</a>
         </div>
     </nav>
 
@@ -166,10 +166,10 @@ mysqli_close($conn);
             <?php if (mysqli_num_rows($resultVehicles) === 0): ?>
                 <div class="warning">
                     <strong> Atención:</strong> No tienes vehículos registrados. 
-                    <a href="/pages/crear_vehiculo.php">Registra un vehículo primero</a>.
+                    <a href="./crear_vehiculo.php">Registra un vehículo primero</a>.
                 </div>
             <?php else: ?>
-                <form action="/actions/insertar_ride.php" method="post">
+                <form action="./actions/insertar_ride.php" method="post">
                     <label for="nombre">Nombre del Ride:</label>
                     <input type="text" id="nombre" name="nombre" 
                            placeholder="Ej: Heredia - San José (Lunes mañana)" 

@@ -28,7 +28,7 @@ if (isset($_GET['id'])) {
         $rideRow = mysqli_fetch_assoc($rideResult);
         
         if ($rideRow['count'] > 0) {
-            header("Location: /pages/vehiculos.php?error=vehicle_in_use");
+            header("Location: ./pages/vehiculos.php?error=vehicle_in_use");
             exit();
         }
         
@@ -38,16 +38,16 @@ if (isset($_GET['id'])) {
         mysqli_stmt_bind_param($deleteStmt, 'i', $vehicle_id);
         
         if (mysqli_stmt_execute($deleteStmt)) {
-            header("Location: /pages/vehiculos.php?success=deleted");
+            header("Location: ./pages/vehiculos.php?success=deleted");
         } else {
-            header("Location: /pages/vehiculos.php?error=delete_failed");
+            header("Location: ./pages/vehiculos.php?error=delete_failed");
         }
     } else {
-        header("Location: /pages/vehiculos.php?error=unauthorized");
+        header("Location: ./pages/vehiculos.php?error=unauthorized");
     }
     
     mysqli_close($conn);
 } else {
-    header("Location: /pages/vehiculos.php");
+    header("Location: ./pages/vehiculos.php");
 }
 ?>

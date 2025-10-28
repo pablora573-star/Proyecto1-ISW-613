@@ -4,7 +4,7 @@
 
   session_start();
   if (isset($_SESSION['cedula'])) {
-      header("Location: /pages/dashboard.php");
+      header("Location: ./pages/dashboard.php");
       exit();
   }
 
@@ -12,16 +12,16 @@
     if (isset($_GET['error'])) {
         switch ($_GET['error']) {
             case "cuenta_pendiente":
-                $error_message = "⚠️ Tu cuenta está pendiente de aprobación. Por favor espera la activación.";
+                $error_message = " Tu cuenta está pendiente de aprobación. Por favor espera la activación.";
                 break;
             case "cuenta_inactiva":
-                $error_message = "🚫 Tu cuenta está inactiva. Contacta con el administrador.";
+                $error_message = " Tu cuenta está inactiva. Contacta con el administrador.";
                 break;
             case "credenciales_invalidas":
-                $error_message = "❌ Cédula o contraseña incorrecta.";
+                $error_message = " Cédula o contraseña incorrecta.";
                 break;
             case "estado_invalido":
-                $error_message = "⚠️ El estado de tu cuenta no es válido.";
+                $error_message = " El estado de tu cuenta no es válido.";
                 break;
             default:
                 $error_message = "";
@@ -54,6 +54,11 @@
             width: 100%;
         }
         h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        h2 {
             text-align: center;
             color: #333;
             margin-bottom: 30px;
@@ -99,15 +104,22 @@
         .register-links a.pasajero {
             background-color: #45a049;
         }
+        .register-links a.pasajero:hover {
+            background-color: #0d00ffff;
+        }
         .register-links a.chofer {
             background-color: #FF9800;
+        }
+        .register-links a.chofer:hover {
+            background-color: #0d00ffff;
         }
     </style>
 </head>
 <body>
     <div class="login-container">
-        <h1>Aventones</h1>
-        <form action="/Proyecto1-ISW-613/actions/login.php" method="post">
+        <h1>Login</h1>
+        <h2>Aventones</h2>
+        <form action=" ./actions/login.php" method="post">
             <input type="cedula" name="cedula" placeholder="Cedula" required>
             <input type="password" name="password" placeholder="Contraseña" required>
             <button type="submit">Iniciar Sesión</button>
@@ -115,8 +127,8 @@
         
         <div class="register-links">
             <p>¿No tienes cuenta?<br> Regístrate como:</p>
-            <a href="./pages/registration_pasajero.php" class="pasajero">Pasajero</a>
-            <a href="./pages/registration_chofer.php" class="chofer">Chofer</a>
+            <a href=" ./pages/registration_pasajero.php" class="pasajero">Pasajero</a>
+            <a href=" ./pages/registration_chofer.php" class="chofer">Chofer</a>
         </div>
     </div>
 </body>

@@ -89,7 +89,7 @@
             <p>Tu registro se completó correctamente.</p>
         <?php endif; ?>
         
-        <a href="/Proyecto1-ISW-613/index.php">Ir al Login</a>
+        <a href="../index.php">Ir al Login</a>
     </div>
 </body>
 </html>

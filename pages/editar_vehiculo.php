@@ -1,18 +1,18 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_id']) || $_SESSION['rol'] !== 'chofer') {
-    header("Location: /index.php");
+    header("Location: ../index.php");
     exit();
 }
 
 if (!isset($_GET['id'])) {
-    header("Location: /pages/vehiculos.php");
+    header("Location: ./vehiculos.php");
     exit();
 }
 
-$currentDir = dirname(__FILE__);
-$parentDir = dirname($currentDir);
-include($parentDir . '/common/connection.php');
+//$currentDir = dirname(__FILE__);
+//$parentDir = dirname($currentDir);
+include('./common/connection.php');
 
 $user_id = $_SESSION['user_id'];
 $vehicle_id = (int)$_GET['id'];
@@ -26,7 +26,7 @@ $resultVehicle = mysqli_stmt_get_result($stmtVehicle);
 
 if (mysqli_num_rows($resultVehicle) === 0) {
     mysqli_close($conn);
-    header("Location: /pages/vehiculos.php?error=vehicle_not_found");
+    header("Location: ./vehiculos.php?error=vehicle_not_found");
     exit();
 }
 
@@ -137,7 +137,7 @@ mysqli_close($conn);
     <nav>
         <h2> Aventones - Editar Vehículo</h2>
         <div class="nav-links">
-            <a href="/pages/vehiculos.php">← Volver a Vehículos</a>
+            <a href="./vehiculos.php">← Volver a Vehículos</a>
         </div>
     </nav>
 
@@ -152,7 +152,7 @@ mysqli_close($conn);
                 </div>
             <?php endif; ?>
             
-            <form action="/actions/actualizar_vehiculo.php" method="post" enctype="multipart/form-data">
+            <form action="./actions/actualizar_vehiculo.php" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="vehicle_id" value="<?= $vehicle['id'] ?>">
                 
                 <label for="placa">Placa:</label>

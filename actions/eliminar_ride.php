@@ -33,23 +33,23 @@ if (isset($_GET['id'])) {
         if (mysqli_stmt_execute($deleteStmt)) {
             mysqli_stmt_close($deleteStmt);
             mysqli_close($conn);
-            header("Location: /pages/dashboard_chofer.php?success=ride_deleted");
+            header("Location: ./pages/dashboard_chofer.php?success=ride_deleted");
             exit();
         } else {
             mysqli_stmt_close($deleteStmt);
             mysqli_close($conn);
-            header("Location: /pages/dashboard_chofer.php?error=delete_failed");
+            header("Location: ./pages/dashboard_chofer.php?error=delete_failed");
             exit();
         }
     } else {
         mysqli_stmt_close($checkStmt);
         mysqli_close($conn);
-        header("Location: /pages/dashboard_chofer.php?error=unauthorized");
+        header("Location: ./pages/dashboard_chofer.php?error=unauthorized");
         exit();
     }
     
 } else {
-    header("Location: /pages/dashboard_chofer.php");
+    header("Location: ./pages/dashboard_chofer.php");
     exit();
 }
 ?>

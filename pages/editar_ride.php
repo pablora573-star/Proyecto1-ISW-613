@@ -1,18 +1,18 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_id']) || $_SESSION['rol'] !== 'chofer') {
-    header("Location: /index.php");
+    header("Location: ./index.php");
     exit();
 }
 
 if (!isset($_GET['id'])) {
-    header("Location: /pages/dashboard_chofer.php");
+    header("Location: ./pages/dashboard_chofer.php");
     exit();
 }
 
-$currentDir = dirname(__FILE__);
-$parentDir = dirname($currentDir);
-include($parentDir . '/common/connection.php');
+//$currentDir = dirname(__FILE__);
+//$parentDir = dirname($currentDir);
+include('./common/connection.php');
 
 $user_id = $_SESSION['user_id'];
 $ride_id = (int)$_GET['id'];
@@ -26,7 +26,7 @@ $resultRide = mysqli_stmt_get_result($stmtRide);
 
 if (mysqli_num_rows($resultRide) === 0) {
     mysqli_close($conn);
-    header("Location: /pages/dashboard_chofer.php?error=ride_not_found");
+    header("Location: ./pages/dashboard_chofer.php?error=ride_not_found");
     exit();
 }
 
@@ -147,7 +147,7 @@ mysqli_close($conn);
     <nav>
         <h2> Aventones - Editar Ride</h2>
         <div class="nav-links">
-            <a href="/pages/dashboard_chofer.php">← Volver al Dashboard</a>
+            <a href="./dashboard_chofer.php">← Volver al Dashboard</a>
         </div>
     </nav>
 
@@ -167,7 +167,7 @@ mysqli_close($conn);
                 </div>
             <?php endif; ?>
             
-            <form action="/actions/actualizar_ride.php" method="post">
+            <form action="./actions/actualizar_ride.php" method="post">
                 <input type="hidden" name="ride_id" value="<?= $ride['id'] ?>">
                 
                 <label for="nombre">Nombre del Ride:</label>

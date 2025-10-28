@@ -1,7 +1,7 @@
  <?php
 session_start();
 if (!isset($_SESSION['user_id']) || $_SESSION['rol'] !== 'chofer') {
-    header("Location: /index.php");
+    header("Location: ../index.php");
     exit();
 }
 ?>
@@ -16,14 +16,14 @@ if (!isset($_SESSION['user_id']) || $_SESSION['rol'] !== 'chofer') {
     <nav>
         <h2>Aventones</h2>
         <div class="nav-links">
-            <a href="/pages/vehiculos.php">← Volver</a>
+            <a href="./vehiculos.php">← Volver</a>
         </div>
     </nav>
     
    
  <div class="container">
         <h1>Registrar Nuevo Vehículo</h1>
-        <form action="/actions/insertar_vehiculo.php" method="post" enctype="multipart/form-data">
+        <form action="./actions/insertar_vehiculo.php" method="post" enctype="multipart/form-data">
             <label>Placa:</label>
             <input type="text" name="placa" required>
 
