@@ -1,0 +1,61 @@
+@use 'variables' as *;
+
+// ============================================
+// Tablas - Estilos compartidos
+// ============================================
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: $spacing-lg;
+
+  th {
+    background-color: $chofer-color;
+    color: $white;
+    padding: 12px;
+    text-align: left;
+  }
+
+  td {
+    padding: 12px;
+    border-bottom: 1px solid $border-color;
+  }
+
+  tr:hover {
+    background-color: #f5f5f5;
+  }
+}
+
+.actions {
+  a {
+    color: #2196F3;
+    text-decoration: none;
+    margin-right: $spacing-md;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &.delete {
+      color: #f44336;
+    }
+  }
+}
+
+.no-data {
+  text-align: center;
+  color: $text-medium;
+  padding: $spacing-xxl;
+  font-style: italic;
+}
+
+// Responsive
+@media (max-width: 768px) {
+  table {
+    font-size: 12px;
+
+    th, td {
+      padding: $spacing-sm;
+    }
+  }
+}

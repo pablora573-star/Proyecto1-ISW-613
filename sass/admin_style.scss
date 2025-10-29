@@ -1,0 +1,29 @@
+@use 'variables' as *;
+@use 'registration_style';
+
+// ============================================
+// ESTILOS ESPECÍFICOS DE ADMIN
+// ============================================
+
+// Botón primario del nav
+nav a.btn-primary {
+  background-color: $admin-color;
+
+  &:hover {
+    background-color: $admin-hover;
+  }
+}
+
+// Botón del formulario
+button {
+  background-color: $admin-color;
+
+  &:hover {
+    background-color: $admin-hover;
+  }
+}
+
+// Badge
+.badge {
+  background-color: $admin-color;
+}

@@ -1,0 +1,19 @@
+@use 'variables' as *;
+@use 'nav';
+@use 'forms';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: $bg-light;
+}
+
+// Estilos específicos si los hay
+.container {
+  max-width: 800px;
+}

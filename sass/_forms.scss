@@ -1,0 +1,132 @@
+@use 'variables' as *;
+
+// ============================================
+// Formularios - Estilos compartidos
+// ============================================
+
+.container {
+  max-width: 800px;
+  margin: $spacing-xxl auto;
+  padding: $spacing-xl;
+}
+
+.form-container {
+  background: $white;
+  padding: $spacing-xxl;
+  border-radius: $radius-md;
+  box-shadow: $shadow-card;
+
+  h1 {
+    color: $text-dark;
+    margin-bottom: $spacing-xxl;
+    text-align: center;
+  }
+}
+
+label {
+  display: block;
+  margin-bottom: $spacing-xs;
+  font-weight: bold;
+  color: $text-light;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="time"],
+input[type="file"],
+select,
+textarea {
+  width: 100%;
+  padding: $spacing-md;
+  margin-bottom: $spacing-xl;
+  border: 1px solid $border-color;
+  border-radius: $radius-sm;
+  font-size: 14px;
+
+  &:focus {
+    outline: none;
+    border-color: $chofer-color;
+  }
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+select {
+  cursor: pointer;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: $chofer-color;
+  color: $white;
+  border: none;
+  border-radius: $radius-sm;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: $chofer-hover;
+  }
+}
+
+// Mensajes
+.error-message {
+  background-color: #ffebee;
+  border-left: 4px solid #f44336;
+  color: #c62828;
+  padding: 12px;
+  margin-bottom: $spacing-xl;
+  border-radius: $radius-sm;
+}
+
+.warning {
+  background-color: #fff3cd;
+  border-left: 4px solid #ffc107;
+  color: #856404;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-xl;
+  border-radius: $radius-sm;
+
+  strong {
+    display: block;
+    margin-bottom: $spacing-xs;
+  }
+
+  a {
+    color: #856404;
+    text-decoration: underline;
+  }
+}
+
+// Filas en formularios
+.row {
+  display: flex;
+  gap: $spacing-xl;
+
+  .col-2 {
+    flex: 1;
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .container {
+    padding: $spacing-md;
+  }
+
+  .form-container {
+    padding: $spacing-xl;
+  }
+
+  .row {
+    flex-direction: column;
+    gap: 0;
+  }
+}

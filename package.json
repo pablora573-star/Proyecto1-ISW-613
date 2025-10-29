@@ -1,0 +1,23 @@
+{
+  "name": "proyecto1-isw-613",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+      "sass": "sass --watch sass:css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pablora573-star/Proyecto1-ISW-613.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pablora573-star/Proyecto1-ISW-613/issues"
+  },
+  "homepage": "https://github.com/pablora573-star/Proyecto1-ISW-613#readme",
+  "description": "",
+  "dependencies": {
+    "sass": "^1.93.2"
+  }
+}

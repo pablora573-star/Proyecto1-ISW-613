@@ -46,7 +46,7 @@ if ($now > $user['token_expiry']) {
 // Verificar si la cuenta ya está activa
 if ($user['estado'] === 'activo') {
     mysqli_close($conn);
-    header("Location: /login.php?info=already_active");
+    header("Location: ./login.php?info=already_active");
     exit();
 }
 

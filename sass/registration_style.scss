@@ -1,0 +1,180 @@
+// Importar variables
+@use 'variables' as *;
+
+// ============================================
+// ESTILOS COMUNES PARA TODOS LOS REGISTROS
+// ============================================
+
+// Reset
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: $bg-light;
+}
+
+// ============================================
+// Navegación (estructura común)
+// ============================================
+nav {
+  background-color: $nav-bg;
+  padding: $spacing-lg $spacing-xxl;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: $shadow-nav;
+
+  h2 {
+    color: $white;
+    font-size: 20px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: $spacing-lg;
+  }
+
+  a {
+    color: $white;
+    text-decoration: none;
+    padding: $spacing-sm $spacing-lg;
+    border-radius: $radius-sm;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: $nav-hover;
+    }
+
+    // Los colores específicos se definen en cada archivo de rol
+  }
+}
+
+// ============================================
+// Container
+// ============================================
+.container {
+  max-width: 600px;
+  margin: $spacing-xxl auto;
+  padding: $spacing-xl;
+}
+
+// ============================================
+// Títulos
+// ============================================
+h1 {
+  text-align: center;
+  color: $text-dark;
+  margin-bottom: $spacing-md;
+}
+
+.subtitle {
+  text-align: center;
+  color: $text-medium;
+  margin-bottom: $spacing-xxl;
+  font-size: 14px;
+}
+
+// ============================================
+// Formularios
+// ============================================
+form {
+  background: $white;
+  padding: $spacing-xxl;
+  border-radius: $radius-md;
+  box-shadow: $shadow-card;
+}
+
+label {
+  display: block;
+  margin-bottom: $spacing-xs;
+  font-weight: bold;
+  color: $text-light;
+}
+
+// Inputs comunes
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="password"] {
+  width: 100%;
+  padding: $spacing-md;
+  margin-bottom: $spacing-lg;
+  border: 1px solid $border-color;
+  border-radius: $radius-sm;
+  font-size: 14px;
+
+  &:focus {
+    outline: none;
+    border-color: currentColor;
+  }
+}
+
+input[type="file"] {
+  width: 100%;
+  padding: $spacing-sm;
+  margin-bottom: $spacing-lg;
+  border: 1px solid $border-color;
+  border-radius: $radius-sm;
+  background-color: $bg-form;
+}
+
+.file-info {
+  font-size: 12px;
+  color: $text-medium;
+  margin-bottom: $spacing-lg;
+}
+
+// Estructura del botón (los colores se definen en cada rol)
+button {
+  width: 100%;
+  padding: 12px;
+  color: $white;
+  border: none;
+  border-radius: $radius-sm;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+// Badge (estructura común)
+.badge {
+  display: inline-block;
+  color: $white;
+  padding: $spacing-xs $spacing-lg;
+  border-radius: $radius-lg;
+  font-size: 14px;
+}
+
+// ============================================
+// Responsive
+// ============================================
+@media (max-width: 768px) {
+  .container {
+    max-width: 100%;
+    padding: $spacing-md;
+  }
+
+  form {
+    padding: $spacing-xl;
+  }
+
+  nav {
+    flex-direction: column;
+    gap: $spacing-md;
+
+    .nav-links {
+      flex-direction: column;
+      width: 100%;
+      
+      a {
+        text-align: center;
+      }
+    }
+  }
+}

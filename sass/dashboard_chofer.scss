@@ -1,0 +1,98 @@
+@use 'variables' as *;
+@use 'nav';
+@use 'tables';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: $bg-light;
+}
+
+.container {
+  max-width: 1200px;
+  margin: $spacing-xxl auto;
+  padding: $spacing-xl;
+}
+
+.welcome {
+  background: $white;
+  padding: $spacing-xl;
+  border-radius: $radius-md;
+  margin-bottom: $spacing-xxl;
+  box-shadow: $shadow-card;
+
+  h1 {
+    color: $text-dark;
+    margin-bottom: $spacing-md;
+  }
+
+  p {
+    color: $text-medium;
+  }
+}
+
+.section {
+  background: $white;
+  padding: 25px;
+  border-radius: $radius-md;
+  margin-bottom: $spacing-xxl;
+  box-shadow: $shadow-card;
+
+  h2 {
+    color: $text-dark;
+    margin-bottom: $spacing-xl;
+    border-bottom: 2px solid $chofer-color;
+    padding-bottom: $spacing-md;
+  }
+}
+
+.btn {
+  display: inline-block;
+  padding: $spacing-md $spacing-xl;
+  background-color: $chofer-color;
+  color: $white;
+  text-decoration: none;
+  border-radius: $radius-sm;
+  margin-bottom: $spacing-xl;
+  font-weight: bold;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: $chofer-hover;
+  }
+}
+
+// Mensajes de éxito y error
+.success-message {
+  background-color: #d4edda;
+  border-left: 4px solid #28a745;
+  color: #155724;
+  padding: 12px;
+  margin-bottom: $spacing-xl;
+  border-radius: $radius-sm;
+}
+
+.error-message {
+  background-color: #f8d7da;
+  border-left: 4px solid #dc3545;
+  color: #721c24;
+  padding: 12px;
+  margin-bottom: $spacing-xl;
+  border-radius: $radius-sm;
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .container {
+    padding: $spacing-md;
+  }
+
+  .welcome, .section {
+    padding: $spacing-lg;
+  }
+}

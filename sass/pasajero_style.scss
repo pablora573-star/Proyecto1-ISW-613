@@ -1,0 +1,29 @@
+@use 'variables' as *;
+@use 'registration_style';
+
+// ============================================
+// ESTILOS ESPECÍFICOS DE PASAJERO
+// ============================================
+
+// Botón primario del nav
+nav a.btn-primary {
+  background-color: $pasajero-color;
+
+  &:hover {
+    background-color: $pasajero-hover;
+  }
+}
+
+// Botón del formulario
+button {
+  background-color: $pasajero-color;
+
+  &:hover {
+    background-color: $pasajero-hover;
+  }
+}
+
+// Badge
+.badge {
+  background-color: $pasajero-color;
+}

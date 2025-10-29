@@ -11,7 +11,7 @@ include('./common/connection.php');
 
 $user_id = $_SESSION['user_id'];
 
-// Obtener vehículos del chofer para el select
+// Obtener vehículos para el select
 $sqlVehicles = "SELECT id, placa, marca, modelo FROM vehicles WHERE user_id = ? ORDER BY marca, modelo";
 $stmtVehicles = mysqli_prepare($conn, $sqlVehicles);
 mysqli_stmt_bind_param($stmtVehicles, 'i', $user_id);
@@ -26,117 +26,7 @@ mysqli_close($conn);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear Ride - Aventones</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-        }
-        nav {
-            background-color: #333;
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        nav h2 {
-            color: white;
-            font-size: 20px;
-        }
-        nav .nav-links a {
-            color: white;
-            text-decoration: none;
-            padding: 8px 15px;
-            border-radius: 4px;
-        }
-        nav .nav-links a:hover {
-            background-color: #555;
-        }
-        .container {
-            max-width: 800px;
-            margin: 30px auto;
-            padding: 20px;
-        }
-        .form-container {
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #333;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #555;
-        }
-        input[type="text"],
-        input[type="number"],
-        input[type="date"],
-        input[type="time"],
-        select,
-        textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-        textarea {
-            resize: vertical;
-            min-height: 80px;
-        }
-        select {
-            cursor: pointer;
-        }
-        button {
-            width: 100%;
-            padding: 12px;
-            background-color: #FF9800;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        button:hover {
-            background-color: #F57C00;
-        }
-        .error-message {
-            background-color: #ffebee;
-            border-left: 4px solid #f44336;
-            color: #c62828;
-            padding: 12px;
-            margin-bottom: 20px;
-            border-radius: 4px;
-        }
-        .warning {
-            background-color: #fff3cd;
-            border-left: 4px solid #ffc107;
-            color: #856404;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 4px;
-        }
-        .row {
-            display: flex;
-            gap: 20px;
-        }
-        .col-2 {
-            flex: 1;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/crear_ride.css">
 </head>
 <body>
     <nav>

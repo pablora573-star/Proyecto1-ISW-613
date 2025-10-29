@@ -1,0 +1,52 @@
+@use 'variables' as *;
+
+// ============================================
+// Navegación - Estilos compartidos
+// ============================================
+nav {
+  background-color: $nav-bg;
+  padding: $spacing-lg $spacing-xxl;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: $shadow-nav;
+
+  h2 {
+    color: $white;
+    font-size: 20px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: $spacing-lg;
+
+    a {
+      color: $white;
+      text-decoration: none;
+      padding: $spacing-sm $spacing-lg;
+      border-radius: $radius-sm;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: $nav-hover;
+      }
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    gap: $spacing-md;
+
+    .nav-links {
+      flex-direction: column;
+      width: 100%;
+      
+      a {
+        text-align: center;
+      }
+    }
+  }
+}
