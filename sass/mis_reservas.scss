@@ -1,0 +1,264 @@
+@use 'variables' as *;
+@use 'nav';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: $bg-light;
+}
+
+.container {
+  max-width: 1200px;
+  margin: $spacing-xxl auto;
+  padding: $spacing-xl;
+}
+
+// Alertas
+.alert {
+  padding: $spacing-lg;
+  margin-bottom: $spacing-xl;
+  border-radius: $radius-sm;
+  border-left: 4px solid;
+
+  &.success {
+    background-color: #d4edda;
+    border-color: #28a745;
+    color: #155724;
+  }
+
+  &.error {
+    background-color: #f8d7da;
+    border-color: #dc3545;
+    color: #721c24;
+  }
+}
+
+// Secciones
+.section {
+  background: $white;
+  padding: $spacing-xxl;
+  border-radius: $radius-md;
+  box-shadow: $shadow-card;
+  margin-bottom: $spacing-xxl;
+
+  h2 {
+    color: $text-dark;
+    margin-bottom: $spacing-xl;
+    padding-bottom: $spacing-md;
+    border-bottom: 2px solid $pasajero-color;
+  }
+}
+
+// Grid de reservas
+.reservations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: $spacing-xl;
+}
+
+// Tarjeta de reserva
+.reservation-card {
+  background: $white;
+  border: 1px solid $border-color;
+  border-radius: $radius-md;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-header {
+    padding: $spacing-lg;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    border-bottom: 2px solid $bg-light;
+
+    &.pendiente {
+      background-color: #fff3cd;
+    }
+
+    &.aceptada {
+      background-color: #d4edda;
+    }
+
+    h3 {
+      color: $text-dark;
+      font-size: 16px;
+      flex: 1;
+    }
+  }
+
+  .card-body {
+    padding: $spacing-lg;
+
+    .info-row {
+      margin-bottom: $spacing-md;
+      font-size: 14px;
+      color: $text-medium;
+
+      strong {
+        color: $text-dark;
+        margin-right: $spacing-xs;
+      }
+
+      .price {
+        color: $pasajero-color;
+        font-weight: bold;
+        font-size: 16px;
+      }
+    }
+
+    .driver-info {
+      background-color: $bg-form;
+      padding: $spacing-md;
+      border-radius: $radius-sm;
+      margin-top: $spacing-lg;
+      font-size: 13px;
+      line-height: 1.6;
+
+      strong {
+        color: $text-dark;
+      }
+    }
+  }
+
+  .card-footer {
+    padding: $spacing-lg;
+    border-top: 1px solid $border-color;
+    text-align: center;
+  }
+}
+
+// Badges
+.badge {
+  display: inline-block;
+  padding: $spacing-xs $spacing-md;
+  border-radius: $radius-lg;
+  font-size: 12px;
+  font-weight: bold;
+
+  &.badge-pendiente {
+    background-color: #ffc107;
+    color: #856404;
+  }
+
+  &.badge-aceptada {
+    background-color: #28a745;
+    color: $white;
+  }
+
+  &.badge-rechazada {
+    background-color: #dc3545;
+    color: $white;
+  }
+
+  &.badge-cancelada {
+    background-color: #6c757d;
+    color: $white;
+  }
+}
+
+// Botones
+.btn {
+  display: inline-block;
+  padding: $spacing-md $spacing-xl;
+  text-decoration: none;
+  border-radius: $radius-sm;
+  font-weight: bold;
+  text-align: center;
+  transition: all 0.3s;
+  border: none;
+  cursor: pointer;
+
+  &.btn-danger {
+    background-color: #dc3545;
+    color: $white;
+
+    &:hover {
+      background-color: #c82333;
+    }
+  }
+
+  &.btn-success {
+    background-color: #28a745;
+    color: $white;
+
+    &:hover {
+      background-color: #218838;
+    }
+  }
+}
+
+// Tabla
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+  thead {
+    background-color: $pasajero-color;
+
+    th {
+      padding: 12px;
+      text-align: left;
+      color: $white;
+      font-weight: bold;
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid $border-color;
+
+      &:hover {
+        background-color: $bg-form;
+      }
+
+      td {
+        padding: 12px;
+        font-size: 14px;
+        color: $text-medium;
+      }
+    }
+  }
+}
+
+// Sin datos
+.no-data {
+  text-align: center;
+  padding: $spacing-xxl;
+  color: $text-medium;
+  font-style: italic;
+
+  a {
+    color: $pasajero-color;
+    text-decoration: underline;
+    margin-left: $spacing-xs;
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .container {
+    padding: $spacing-md;
+  }
+
+  .reservations-grid {
+    grid-template-columns: 1fr;
+  }
+
+  table {
+    font-size: 12px;
+
+    th, td {
+      padding: $spacing-sm;
+    }
+  }
+}

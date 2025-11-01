@@ -1,0 +1,291 @@
+nav {
+  background-color: #333;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+nav h2 {
+  color: #fff;
+  font-size: 20px;
+}
+nav .nav-links {
+  display: flex;
+  gap: 15px;
+}
+nav .nav-links a {
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+nav .nav-links a:hover {
+  background-color: #555;
+}
+
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+  nav .nav-links {
+    flex-direction: column;
+    width: 100%;
+  }
+  nav .nav-links a {
+    text-align: center;
+  }
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px;
+}
+
+.search-section {
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+.search-section h1 {
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.search-form .search-inputs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+.search-form .search-inputs input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.search-form .search-inputs input:focus {
+  outline: none;
+  border-color: #4CAF50;
+}
+.search-form .search-inputs button {
+  padding: 12px 30px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.search-form .search-inputs button:hover {
+  background-color: #054c09;
+}
+.search-form .sort-options {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.search-form .sort-options label {
+  font-weight: bold;
+  color: #555;
+}
+.search-form .sort-options select {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.results-section h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.rides-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+}
+
+.ride-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.ride-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+.ride-card .ride-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #f4f4f4;
+}
+.ride-card .ride-header h3 {
+  color: #333;
+  font-size: 18px;
+  flex: 1;
+}
+.ride-card .ride-header .ride-price {
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-weight: bold;
+  font-size: 16px;
+}
+.ride-card .ride-route {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+}
+.ride-card .ride-route .location {
+  flex: 1;
+}
+.ride-card .ride-route .location strong {
+  display: block;
+  color: #555;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+.ride-card .ride-route .location span {
+  color: #333;
+  font-size: 14px;
+}
+.ride-card .ride-route .arrow {
+  color: #4CAF50;
+  font-size: 24px;
+  font-weight: bold;
+}
+.ride-card .ride-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.ride-card .ride-info .info-item {
+  font-size: 14px;
+  color: #666;
+}
+.ride-card .ride-info .info-item strong {
+  display: block;
+  margin-bottom: 5px;
+}
+.ride-card .ride-vehicle,
+.ride-card .ride-seats {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #666;
+}
+.ride-card .ride-vehicle strong,
+.ride-card .ride-seats strong {
+  color: #555;
+  margin-right: 5px;
+}
+.ride-card .ride-seats .available {
+  color: #4CAF50;
+  font-weight: bold;
+}
+.ride-card .ride-seats .full {
+  color: #f44336;
+  font-weight: bold;
+}
+.ride-card .btn-reserve,
+.ride-card .btn-login,
+.ride-card .btn-full {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+  margin-top: 15px;
+  transition: all 0.3s;
+}
+.ride-card .btn-reserve {
+  background-color: #4CAF50;
+  color: #fff;
+}
+.ride-card .btn-reserve:hover {
+  background-color: #054c09;
+  transform: scale(1.02);
+}
+.ride-card .btn-login {
+  background-color: #2196F3;
+  color: #fff;
+}
+.ride-card .btn-login:hover {
+  background-color: #1976D2;
+}
+.ride-card .btn-full {
+  background-color: #ddd;
+  color: #666;
+  border: none;
+  cursor: not-allowed;
+}
+
+.no-results {
+  text-align: center;
+  padding: 60px 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.no-results h2 {
+  color: #666;
+  margin-bottom: 15px;
+}
+.no-results p {
+  color: #555;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+  .search-form .search-inputs {
+    flex-direction: column;
+  }
+  .search-form .search-inputs button {
+    width: 100%;
+  }
+  .rides-grid {
+    grid-template-columns: 1fr;
+  }
+  .ride-route {
+    flex-direction: column;
+  }
+  .ride-route .arrow {
+    transform: rotate(90deg);
+  }
+}
+
+/*# sourceMappingURL=buscar_rides_style.css.map */

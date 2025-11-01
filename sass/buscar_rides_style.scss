@@ -1,0 +1,297 @@
+@use 'variables' as *;
+@use 'nav';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: $bg-light;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: $spacing-xxl;
+}
+
+// Sección de búsqueda
+.search-section {
+  background: $white;
+  padding: $spacing-xxl;
+  border-radius: $radius-md;
+  box-shadow: $shadow-card;
+  margin-bottom: $spacing-xxl;
+
+  h1 {
+    color: $text-dark;
+    margin-bottom: $spacing-xl;
+    text-align: center;
+  }
+}
+
+.search-form {
+  .search-inputs {
+    display: flex;
+    gap: $spacing-md;
+    margin-bottom: $spacing-lg;
+
+    input {
+      flex: 1;
+      padding: 12px;
+      border: 1px solid $border-color;
+      border-radius: $radius-sm;
+      font-size: 14px;
+
+      &:focus {
+        outline: none;
+        border-color: $pasajero-color;
+      }
+    }
+
+    button {
+      padding: 12px $spacing-xxl;
+      background-color: $pasajero-color;
+      color: $white;
+      border: none;
+      border-radius: $radius-sm;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: $pasajero-hover;
+      }
+    }
+  }
+
+  .sort-options {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+
+    label {
+      font-weight: bold;
+      color: $text-light;
+    }
+
+    select {
+      flex: 1;
+      padding: $spacing-md;
+      border: 1px solid $border-color;
+      border-radius: $radius-sm;
+      cursor: pointer;
+    }
+  }
+}
+
+// Resultados
+.results-section {
+  h2 {
+    color: $text-dark;
+    margin-bottom: $spacing-xl;
+  }
+}
+
+.rides-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: $spacing-xl;
+}
+
+.ride-card {
+  background: $white;
+  padding: $spacing-xl;
+  border-radius: $radius-md;
+  box-shadow: $shadow-card;
+  transition: transform 0.3s, box-shadow 0.3s;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  }
+
+  .ride-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: $spacing-lg;
+    padding-bottom: $spacing-md;
+    border-bottom: 2px solid $bg-light;
+
+    h3 {
+      color: $text-dark;
+      font-size: 18px;
+      flex: 1;
+    }
+
+    .ride-price {
+      background-color: $pasajero-color;
+      color: $white;
+      padding: $spacing-xs $spacing-md;
+      border-radius: $radius-lg;
+      font-weight: bold;
+      font-size: 16px;
+    }
+  }
+
+  .ride-route {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    margin-bottom: $spacing-lg;
+    padding: $spacing-md;
+    background-color: $bg-form;
+    border-radius: $radius-sm;
+
+    .location {
+      flex: 1;
+
+      strong {
+        display: block;
+        color: $text-light;
+        font-size: 12px;
+        margin-bottom: $spacing-xs;
+      }
+
+      span {
+        color: $text-dark;
+        font-size: 14px;
+      }
+    }
+
+    .arrow {
+      color: $pasajero-color;
+      font-size: 24px;
+      font-weight: bold;
+    }
+  }
+
+  .ride-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-md;
+    margin-bottom: $spacing-md;
+
+    .info-item {
+      font-size: 14px;
+      color: $text-medium;
+
+      strong {
+        display: block;
+        margin-bottom: $spacing-xs;
+      }
+    }
+  }
+
+  .ride-vehicle,
+  .ride-seats {
+    margin-bottom: $spacing-md;
+    font-size: 14px;
+    color: $text-medium;
+
+    strong {
+      color: $text-light;
+      margin-right: $spacing-xs;
+    }
+  }
+
+  .ride-seats {
+    .available {
+      color: $pasajero-color;
+      font-weight: bold;
+    }
+
+    .full {
+      color: #f44336;
+      font-weight: bold;
+    }
+  }
+
+  .btn-reserve,
+  .btn-login,
+  .btn-full {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: $radius-sm;
+    font-weight: bold;
+    margin-top: $spacing-lg;
+    transition: all 0.3s;
+  }
+
+  .btn-reserve {
+    background-color: $pasajero-color;
+    color: $white;
+
+    &:hover {
+      background-color: $pasajero-hover;
+      transform: scale(1.02);
+    }
+  }
+
+  .btn-login {
+    background-color: #2196F3;
+    color: $white;
+
+    &:hover {
+      background-color: #1976D2;
+    }
+  }
+
+  .btn-full {
+    background-color: $border-color;
+    color: $text-medium;
+    border: none;
+    cursor: not-allowed;
+  }
+}
+
+.no-results {
+  text-align: center;
+  padding: 60px $spacing-xl;
+  background: $white;
+  border-radius: $radius-md;
+  box-shadow: $shadow-card;
+
+  h2 {
+    color: $text-medium;
+    margin-bottom: $spacing-lg;
+  }
+
+  p {
+    color: $text-light;
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .container {
+    padding: $spacing-md;
+  }
+
+  .search-form .search-inputs {
+    flex-direction: column;
+
+    button {
+      width: 100%;
+    }
+  }
+
+  .rides-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ride-route {
+    flex-direction: column;
+
+    .arrow {
+      transform: rotate(90deg);
+    }
+  }
+}
