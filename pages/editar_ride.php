@@ -1,18 +1,18 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_id']) || $_SESSION['rol'] !== 'chofer') {
-    header("Location: ./index.php");
+    header("Location: ../index.php");
     exit();
 }
 
 if (!isset($_GET['id'])) {
-    header("Location: ./pages/dashboard_chofer.php");
+    header("Location: ../pages/dashboard_chofer.php");
     exit();
 }
 
 //$currentDir = dirname(__FILE__);
 //$parentDir = dirname($currentDir);
-include('./common/connection.php');
+include('../common/connection.php');
 
 $user_id = $_SESSION['user_id'];
 $ride_id = (int)$_GET['id'];
@@ -26,14 +26,14 @@ $resultRide = mysqli_stmt_get_result($stmtRide);
 
 if (mysqli_num_rows($resultRide) === 0) {
     mysqli_close($conn);
-    header("Location: ./pages/dashboard_chofer.php?error=ride_not_found");
+    header("Location: ../pages/dashboard_chofer.php?error=ride_not_found");
     exit();
 }
 
 $ride = mysqli_fetch_assoc($resultRide);
 
 // Obtener vehículos del chofer
-$sqlVehicles = "SELECT id, placa, marca, modelo FROM vehicles WHERE user_id = ? ORDER BY marca, modelo";
+$sqlVehicles = "SELECT id, placa, marca, modelo, capacidad_asientos FROM vehiculos WHERE user_id = ? ORDER BY marca, modelo";
 $stmtVehicles = mysqli_prepare($conn, $sqlVehicles);
 mysqli_stmt_bind_param($stmtVehicles, 'i', $user_id);
 mysqli_stmt_execute($stmtVehicles);
@@ -49,6 +49,26 @@ mysqli_close($conn);
     <title>Editar Ride - Aventones</title>
    <link rel="stylesheet" href="../css/editar_ride.css">
 </head>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const vehicleSelect = document.getElementById("vehicle_id");
+        const espaciosInput = document.getElementById("cantidad_espacios");
+
+    
+        vehicleSelect.addEventListener("change", function () {
+            const selectedOption = vehicleSelect.options[vehicleSelect.selectedIndex];
+            const capacidad = selectedOption.getAttribute("data-capacidad");
+
+            if (capacidad) {
+                espaciosInput.value = capacidad;
+            } else {
+                espaciosInput.value = "1"; 
+            }
+        });
+    });
+</script>
+
 <body>
     <nav>
         <h2> Aventones - Editar Ride</h2>
@@ -73,7 +93,7 @@ mysqli_close($conn);
                 </div>
             <?php endif; ?>
             
-            <form action="./actions/actualizar_ride.php" method="post">
+            <form action="../actions/actualizar_ride.php" method="post">
                 <input type="hidden" name="ride_id" value="<?= $ride['id'] ?>">
                 
                 <label for="nombre">Nombre del Ride:</label>
@@ -105,7 +125,20 @@ mysqli_close($conn);
                                required>
                     </div>
                 </div>
-                
+
+                <label for="vehicle_id">Vehículo:</label>
+                <select id="vehicle_id" name="vehicle_id" required>
+                    <option value="">Selecciona un vehículo</option>
+                    <?php while ($vehicle = mysqli_fetch_assoc($resultVehicles)): ?>
+                        <option value="<?= $vehicle['id'] ?>" 
+                            data-capacidad="<?= $vehicle['capacidad_asientos'] ?>"
+                            <?= $vehicle['id'] == $ride['vehicle_id'] ? 'selected' : '' ?>>
+                            <?= htmlspecialchars($vehicle['marca'] . ' ' . $vehicle['modelo']) ?> 
+                            (<?= htmlspecialchars($vehicle['placa']) ?>)
+                        </option>
+                    <?php endwhile; ?>
+                </select>
+
                 <div class="row">
                     <div class="col-2">
                         <label for="costo_espacio">Costo por Espacio (₡):</label>
@@ -114,26 +147,18 @@ mysqli_close($conn);
                                min="0" step="100" 
                                required>
                     </div>
+
+
                     <div class="col-2">
                         <label for="cantidad_espacios">Cantidad de Espacios:</label>
                         <input type="number" id="cantidad_espacios" name="cantidad_espacios" 
                                value="<?= $ride['cantidad_espacios'] ?>" 
-                               min="1" max="50" 
+                               min="1" max="10" 
                                required>
                     </div>
                 </div>
                 
-                <label for="vehicle_id">Vehículo:</label>
-                <select id="vehicle_id" name="vehicle_id" required>
-                    <option value="">Selecciona un vehículo</option>
-                    <?php while ($vehicle = mysqli_fetch_assoc($resultVehicles)): ?>
-                        <option value="<?= $vehicle['id'] ?>" 
-                                <?= $vehicle['id'] == $ride['vehicle_id'] ? 'selected' : '' ?>>
-                            <?= htmlspecialchars($vehicle['marca'] . ' ' . $vehicle['modelo']) ?> 
-                            (<?= htmlspecialchars($vehicle['placa']) ?>)
-                        </option>
-                    <?php endwhile; ?>
-                </select>
+                
                 
                 <button type="submit">Actualizar Ride</button>
             </form>

@@ -12,13 +12,13 @@ if (!isset($_GET['id'])) {
 
 //$currentDir = dirname(__FILE__);
 //$parentDir = dirname($currentDir);
-include('./common/connection.php');
+include('../common/connection.php');
 
 $user_id = $_SESSION['user_id'];
 $vehicle_id = (int)$_GET['id'];
 
 // Obtener datos del vehículo
-$sqlVehicle = "SELECT * FROM vehicles WHERE id = ? AND user_id = ?";
+$sqlVehicle = "SELECT * FROM vehiculos WHERE id = ? AND user_id = ?";
 $stmtVehicle = mysqli_prepare($conn, $sqlVehicle);
 mysqli_stmt_bind_param($stmtVehicle, 'ii', $vehicle_id, $user_id);
 mysqli_stmt_execute($stmtVehicle);
@@ -56,11 +56,11 @@ mysqli_close($conn);
             <?php if ($vehicle['foto_url']): ?>
                 <div class="current-photo">
                     <p style="margin-bottom:10px;color:#666;"><strong>Foto actual:</strong></p>
-                    <img src="/<?= htmlspecialchars($vehicle['foto_url']) ?>" alt="Foto actual del vehículo">
+                    <img src="../<?= htmlspecialchars($vehicle['foto_url']) ?>" alt="Foto actual del vehículo">
                 </div>
             <?php endif; ?>
             
-            <form action="./actions/actualizar_vehiculo.php" method="post" enctype="multipart/form-data">
+            <form action="../actions/actualizar_vehiculo.php" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="vehicle_id" value="<?= $vehicle['id'] ?>">
                 
                 <label for="placa">Placa:</label>

@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['user_id']) || $_SESSION['rol'] !== 'chofer') {
-    header("Location: /index.php");
+    header("Location: ../index.php");
     exit();
 }
 
@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (mysqli_num_rows($resultCheck) === 0) {
         mysqli_stmt_close($checkStmt);
         mysqli_close($conn);
-        header("Location: ./pages/vehiculos.php?error=unauthorized");
+        header("Location: ../pages/vehiculos.php?error=unauthorized");
         exit();
     }
     
@@ -93,17 +93,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (mysqli_stmt_execute($stmt)) {
         mysqli_stmt_close($stmt);
         mysqli_close($conn);
-        header("Location: ./pages/vehiculos.php?success=updated");
+        header("Location: ../pages/vehiculos.php?success=updated");
         exit();
     } else {
         mysqli_stmt_close($stmt);
         mysqli_close($conn);
-        header("Location: ./pages/editar_vehiculo.php?id=$vehicle_id&error=update_failed");
+        header("Location: ../pages/editar_vehiculo.php?id=$vehicle_id&error=update_failed");
         exit();
     }
     
 } else {
-    header("Location: ./pages/vehiculos.php");
+    header("Location: ../pages/vehiculos.php");
     exit();
 }
 ?>

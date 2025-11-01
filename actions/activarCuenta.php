@@ -1,13 +1,15 @@
 <?php
 
+
 $currentDir = dirname(__FILE__);
 $parentDir = dirname($currentDir);
-
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 include($parentDir . '/common/connection.php');
 
 // Verificar que se recibió el token
 if (!isset($_GET['token']) || empty($_GET['token'])) {
-    header("Location: ./pages/activation_error.php?error=no_token");
+    header("Location: ../pages/activation_error.php?error=no_token");
     exit();
 }
 
@@ -28,7 +30,7 @@ $result = mysqli_stmt_get_result($stmt);
 if (mysqli_num_rows($result) === 0) {
     mysqli_stmt_close($stmt);
     mysqli_close($conn);
-    header("Location: ./pages/activation_error.php?error=invalid_token");
+    header("Location: ../pages/activation_error.php?error=invalid_token");
     exit();
 }
 
@@ -39,23 +41,23 @@ mysqli_stmt_close($stmt);
 $now = date('Y-m-d H:i:s');
 if ($now > $user['token_expiry']) {
     mysqli_close($conn);
-    header("Location: ./pages/activation_error.php?error=token_expired");
+    header("Location: ../pages/activation_error.php?error=token_expired");
     exit();
 }
 
 // Verificar si la cuenta ya está activa
-if ($user['estado'] === 'activo') {
+if ($user['estado'] === 'activa') {
     mysqli_close($conn);
-    header("Location: ./login.php?info=already_active");
+    header("Location: ../login.php?info=already_active");
     exit();
 }
 
 // Activar la cuenta
 $updateSql = "UPDATE users 
-              SET estado = 'activo', 
+              SET estado = 'activa', 
                   activation_token = NULL, 
                   token_expiry = NULL, 
-                  fecha_activacion = NOW() 
+                  fecha_creado = NOW() 
               WHERE id = ?";
 
 $updateStmt = mysqli_prepare($conn, $updateSql);
@@ -63,12 +65,12 @@ mysqli_stmt_bind_param($updateStmt, 'i', $user['id']);
 
 if (mysqli_stmt_execute($updateStmt)) {
     // Cuenta activada exitosamente
-    
+    echo "Error al actualizar: " . mysqli_error($conn);
     // Enviar correo de bienvenida (opcional)
     $subject = "¡Cuenta activada exitosamente!";
     $body = "Hola {$user['nombre']} {$user['apellido']},\n\n"
           . "¡Tu cuenta en Aventones ha sido activada exitosamente!\n\n"
-          . "Ya puedes iniciar sesión con tu correo electrónico y contraseña.\n\n"
+          . "Ya puedes iniciar sesión con tu cedula y contraseña.\n\n"
           . "¡Bienvenido a Aventones!\n\n"
           . "Saludos,\nEquipo Aventones";
     
@@ -80,13 +82,13 @@ if (mysqli_stmt_execute($updateStmt)) {
     mysqli_stmt_close($updateStmt);
     mysqli_close($conn);
     
-    header("Location: ./pages/activation_success.php?name=" . urlencode($user['nombre']));
+    header("Location: ../pages/registration_confirm.php?name=" . urlencode($user['nombre']));
     exit();
     
 } else {
     mysqli_stmt_close($updateStmt);
     mysqli_close($conn);
-    header("Location: ./pages/activation_error.php?error=update_failed");
+    header("Location: ../pages/activation_error.php?error=update_failed");
     exit();
 }
 ?>

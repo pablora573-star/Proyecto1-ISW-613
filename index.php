@@ -3,10 +3,19 @@
   //if not, redirect to login page
 
   session_start();
-  if (isset($_SESSION['cedula'])) {
-      header("Location:./pages/dashboard.php");
-      exit();
-  }
+  if (isset($_SESSION['rol'])) {
+    switch ($_SESSION['rol']) {
+        case 'chofer':
+            header("Location: ./pages/dashboard_chofer.php");
+            exit();
+        case 'pasajero':
+            header("Location: ./pages/dashboard_pasajero.php");
+            exit();
+        case 'admin':
+            header("Location: ./pages/dashboard_admin.php");
+            exit();
+        }
+    }
 
   $error_message = "";
     if (isset($_GET['error'])) {

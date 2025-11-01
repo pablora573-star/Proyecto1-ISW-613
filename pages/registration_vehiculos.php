@@ -23,28 +23,29 @@ if (!isset($_SESSION['user_id']) || $_SESSION['rol'] !== 'chofer') {
    
  <div class="container">
         <h1>Registrar Nuevo Vehículo</h1>
-        <form action="./actions/insertar_vehiculo.php" method="post" enctype="multipart/form-data">
+        <form action="../actions/insertar_vehiculo.php" method="post" enctype="multipart/form-data">
+            <br>
             <label>Placa:</label>
             <input type="text" name="placa" required>
-
+            <br>
             <label>Color:</label>
             <input type="text" name="color" required>
-            
+            <br>
             <label>Marca:</label>
             <input type="text" name="marca" required>
-            
+            <br>
             <label>Modelo:</label>
             <input type="text" name="modelo" required>
-            
+            <br>
             <label>Año:</label>
             <input type="number" name="anio" min="1900" max="2025" required>
-            
+            <br>
             <label>Capacidad de Asientos:</label>
             <input type="number" name="capacidad_asientos" min="1" max="8" required>
-            
+            <br>
             <label>Fotografía del Vehículo:</label>
             <input type="file" name="foto" accept="image/*" required>
-            
+            <br>
             <button type="submit">Registrar Vehículo</button>
         </form>
     </div>

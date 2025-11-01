@@ -9,16 +9,17 @@ if (!isset($_SESSION['user_id']) || $_SESSION['rol'] !== 'chofer') {
 
 //$currentDir = dirname(__FILE__);
 //$parentDir = dirname($currentDir);
-include('./common/connection.php');
+include('../common/connection.php');
 
 $user_id = $_SESSION['user_id'];
 $nombre = $_SESSION['nombre'];
 $apellido = $_SESSION['apellido'];
+$foto = $_SESSION['foto'];
 
 // Obtener rides del chofer
 $sqlRides = "SELECT r.*, v.placa, v.marca, v.modelo 
              FROM rides r 
-             LEFT JOIN vehicles v ON r.vehicle_id = v.id 
+             LEFT JOIN vehiculos v ON r.vehicle_id = v.id 
              WHERE r.user_id = ? 
              ORDER BY r.fecha_viaje DESC, r.hora_viaje DESC";
 $stmtRides = mysqli_prepare($conn, $sqlRides);
@@ -41,16 +42,29 @@ mysqli_close($conn);
         <h2>Aventones - Dashboard Chofer</h2>
         <div class="nav-links">
             <a href="./vehiculos.php">Mis Vehículos</a>
-            <a href="./actions/logout.php">Cerrar Sesión</a>
+            <a href="../actions/logout.php">Cerrar Sesión</a>
         </div>
     </nav>
 
     <div class="container">
         <div class="welcome">
+           <?php 
+   
+            
+
+   
+            if (!empty($foto) && file_exists($foto)): ?>
+                <img src="<?= htmlspecialchars($foto) ?>" alt="Foto de perfil" class="foto-perfil">
+            <?php else: ?>
+                <img src="../images/default_user.png" alt="Foto de perfil" class="foto-perfil">
+            <?php endif; ?>
+
             <h1>Bienvenido, <?= htmlspecialchars($nombre . ' ' . $apellido) ?>!</h1>
             <p>Gestiona tus rides y vehículos desde este panel.</p>
         </div>
 
+
+        
         <div class="section">
             <h2>Mis Rides</h2>
             <?php
@@ -117,7 +131,7 @@ mysqli_close($conn);
                             <td><?= $ride['cantidad_espacios'] ?></td>
                             <td class="actions">
                                 <a href="./editar_ride.php?id=<?= $ride['id'] ?>">Editar</a>
-                                <a href="./actions/eliminar_ride.php?id=<?= $ride['id'] ?>" 
+                                <a href="../actions/eliminar_ride.php?id=<?= $ride['id'] ?>" 
                                    class="delete" 
                                    onclick="return confirm('¿Estás seguro de eliminar este ride?')">Eliminar</a>
                             </td>

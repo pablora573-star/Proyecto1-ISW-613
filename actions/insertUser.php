@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Validar que las contraseñas coincidan
     if ($password !== $password2) {
-        header("Location: ./pages/register_$rol.php?error=password_mismatch");
+        header("Location: ../pages/register_$rol.php?error=password_mismatch");
         exit();
     }
 
@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $resultCheck = mysqli_stmt_get_result($checkCedula);
     
     if (mysqli_num_rows($resultCheck) > 0) {
-        header("Location: ./pages/register_$rol.php?error=cedula_exists");
+        header("Location: ../pages/register_$rol.php?error=cedula_exists");
         exit();
     }
     mysqli_stmt_close($checkCedula);
@@ -53,13 +53,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Validar extensión
         $extensionesPermitidas = ['jpg', 'jpeg', 'png', 'gif'];
         if (!in_array($extension, $extensionesPermitidas)) {
-            header("Location: ./pages/register_$rol.php?error=invalid_image");
+            header("Location: ../pages/register_$rol.php?error=invalid_image");
             exit();
         }
         
         // Validar tamaño (5MB máximo)
         if ($foto['size'] > 5 * 1024 * 1024) {
-            header("Location: ./pages/register_$rol.php?error=image_too_large");
+            header("Location: ../pages/register_$rol.php?error=image_too_large");
             exit();
         }
         
@@ -75,14 +75,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         // Mover archivo
         if (move_uploaded_file($foto['tmp_name'], $rutaDestino)) {
-            $fotoRuta = 'uploads/fotos/' . $nombreArchivo;
+            $fotoRuta = '../uploads/fotos/' . $nombreArchivo;
         } else {
-            header("Location: ./pages/register_$rol.php?error=upload_failed");
+            header("Location: ../pages/register_$rol.php?error=upload_failed");
             exit();
         }
         
     } else {
-        header("Location: ./pages/register_$rol.php?error=no_photo");
+        header("Location: ../pages/register_$rol.php?error=no_photo");
         exit();
     }
 
@@ -109,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $userId = mysqli_insert_id($conn);
         
         // Preparar y enviar correo de activación
-        $activationLink = "http://" . $_SERVER['HTTP_HOST'] . "./actions/activarCuenta.php?token=$activationToken";
+        $activationLink = "http://" . $_SERVER['HTTP_HOST'] . "/Proyecto1-ISW-613/actions/activarCuenta.php?token=$activationToken";
         
         $subject = "Activa tu cuenta en Aventones";
         $body = "Hola $name $lastName,\n\n"
@@ -127,17 +127,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         if (mail($correo, $subject, $body, $headers)) {
             // Correo enviado exitosamente
-            header("Location: ./pages/registration_success.php?email=" . urlencode($correo));
+            header("Location: ../pages/registration_success.php?email=" . urlencode($correo));
             exit();
         } else {
             // Error al enviar correo, pero usuario creado
-            header("Location: ./pages/registration_success.php?email=" . urlencode($correo) . "&warning=email_failed");
+            header("Location: ../pages/registration_success.php?email=" . urlencode($correo) . "&warning=email_failed");
             exit();
         }
         
     } else {
         // Error al insertar en base de datos
-        header("Location: ./pages/register_$rol.php?error=registration_failed");
+        header("Location: ../pages/register_$rol.php?error=registration_failed");
         exit();
     }
     

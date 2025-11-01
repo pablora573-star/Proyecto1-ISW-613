@@ -2,14 +2,18 @@
 $currentDir = dirname(__FILE__);
 $parentDir = dirname($currentDir);
 
+// ✅ Incluir conexión correctamente
 include($parentDir . '/common/connection.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cedula = mysqli_real_escape_string($conn, $_POST['cedula']);
     $password = $_POST['password'];
     
-    // Buscar usuario por cédula con prepared statement (SEGURO)
-    $sql = "SELECT id, cedula, nombre, apellido, contra, rol, estado FROM users WHERE cedula = ? LIMIT 1";
+    // Buscar usuario por cédula 
+    $sql = "SELECT id, cedula, nombre, apellido, foto_url, contra, rol, estado 
+            FROM users 
+            WHERE cedula = ? 
+            LIMIT 1";
     $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt, 's', $cedula);
     mysqli_stmt_execute($stmt);
@@ -18,49 +22,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
         
-        // Verificar la contraseña PRIMERO 
-       
-        $passwordMatch = (md5($password) === $row['contra']);
-        
+        // Verificar la contraseña encriptada
+        $passwordMatch = password_verify($password, $row['contra']);
         
         if ($passwordMatch) {
-            // verificar el estado de la cuenta
-            
-            if ($row['estado'] === 'activo') {
-                //  CUENTA ACTIVA - Permitir login
+            // Verificar el estado de la cuenta
+            if ($row['estado'] === 'activa') {
                 session_start();
                 $_SESSION['user_id'] = $row['id'];
                 $_SESSION['cedula'] = $row['cedula'];
                 $_SESSION['nombre'] = $row['nombre'];
                 $_SESSION['apellido'] = $row['apellido'];
                 $_SESSION['rol'] = $row['rol'];
-                
+                $_SESSION['foto'] = $row['foto_url'];
                 mysqli_stmt_close($stmt);
                 mysqli_close($conn);
-                
+
+                // ✅ Redirigir según el rol
                 if ($row['rol'] === 'chofer') {
-                    header("Location: ./pages/dashboard_chofer.php");
+                    header("Location: ../pages/dashboard_chofer.php");
+                } elseif ($row['rol'] === 'pasajero') {
+                    header("Location: ../pages/dashboard_pasajero.php");
+                } elseif ($row['rol'] === 'administrador') {
+                    header("Location: ../pages/dashboard_admin.php");
                 } else {
-                    header("Location: ./pages/dashboard_pasajero.php");
+                    header("Location: ../index.php?error=estado_invalido");
                 }
                 exit();
                 
             } elseif ($row['estado'] === 'pendiente') {
-                // CUENTA PENDIENTE - No permitir login
                 mysqli_stmt_close($stmt);
                 mysqli_close($conn);
                 header("Location: ../index.php?error=cuenta_pendiente");
                 exit();
                 
-            } elseif ($row['estado'] === 'inactivo') {
-                // CUENTA INACTIVA - No permitir login
+            } elseif ($row['estado'] === 'inactiva') {
                 mysqli_stmt_close($stmt);
                 mysqli_close($conn);
                 header("Location: ../index.php?error=cuenta_inactiva");
                 exit();
                 
             } else {
-                // Estado desconocido
                 mysqli_stmt_close($stmt);
                 mysqli_close($conn);
                 header("Location: ../index.php?error=estado_invalido");
@@ -76,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         
     } else {
-        //  Usuario no encontrado
+        // Usuario no encontrado
         mysqli_stmt_close($stmt);
         mysqli_close($conn);
         header("Location: ../index.php?error=credenciales_invalidas");

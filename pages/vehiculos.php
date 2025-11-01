@@ -15,8 +15,9 @@ $user_id = $_SESSION['user_id'];
 $nombre = $_SESSION['nombre'];
 $apellido = $_SESSION['apellido'];
 
+
 // Obtener vehículos del chofer
-$sqlVehicles = "SELECT * FROM vehicles WHERE user_id = ? ORDER BY fecha_creado DESC";
+$sqlVehicles = "SELECT * FROM vehiculos WHERE user_id = ? ORDER BY anio DESC";
 $stmtVehicles = mysqli_prepare($conn, $sqlVehicles);
 mysqli_stmt_bind_param($stmtVehicles, 'i', $user_id);
 mysqli_stmt_execute($stmtVehicles);
@@ -160,7 +161,7 @@ mysqli_close($conn);
         <h2> Aventones - Mis Vehículos</h2>
         <div class="nav-links">
             <a href="./dashboard_chofer.php">Dashboard</a>
-            <a href="./actions/logout.php">Cerrar Sesión</a>
+            <a href="../actions/logout.php">Cerrar Sesión</a>
         </div>
     </nav>
 
@@ -194,7 +195,7 @@ mysqli_close($conn);
             }
             ?>
             
-            <a href="./crear_vehiculo.php" class="btn"> Registrar Nuevo Vehículo</a>
+            <a href="./registration_vehiculos.php" class="btn"> Registrar Nuevo Vehículo</a>
             
             <?php if (mysqli_num_rows($resultVehicles) > 0): ?>
                 <table>
@@ -212,7 +213,7 @@ mysqli_close($conn);
                         <tr>
                             <td>
                                 <?php if ($vehicle['foto_url']): ?>
-                                    <img src="/<?= htmlspecialchars($vehicle['foto_url']) ?>" 
+                                    <img src="../<?= htmlspecialchars($vehicle['foto_url']) ?>" 
                                          alt="Foto del vehículo" 
                                          class="vehicle-photo">
                                 <?php else: ?>
@@ -228,8 +229,8 @@ mysqli_close($conn);
                             <td><?= htmlspecialchars($vehicle['color']) ?></td>
                             <td><?= $vehicle['capacidad_asientos'] ?> asientos</td>
                             <td class="actions">
-                                <a href="./editar_vehiculo.php?id=<?= $vehicle['id'] ?>">Editar</a>
-                                <a href="./actions/eliminar_vehiculo.php?id=<?= $vehicle['id'] ?>" 
+                                <a href="/editar_vehiculo.php?id=<?= $vehicle['id'] ?>">Editar</a>
+                                <a href="../actions/eliminar_vehiculo.php?id=<?= $vehicle['id'] ?>" 
                                    class="delete" 
                                    onclick="return confirm('¿Estás seguro de eliminar este vehículo?')">Eliminar</a>
                             </td>

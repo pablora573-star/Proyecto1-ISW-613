@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_id']) || $_SESSION['rol'] !== 'chofer') {
-    header("Location: /index.php");
+    header("Location: ../index.php");
     exit();
 }
 
@@ -45,9 +45,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     mysqli_stmt_bind_param($stmt, 'isssisss', $placa, $color, $marca, $modelo, $anio, $capacidad, $fotoRuta, $user_id);
     
     if (mysqli_stmt_execute($stmt)) {
-        header("Location: ./pages/vehiculos.php?success=created");
+        header("Location: ../pages/vehiculos.php?success=created");
     } else {
-        header("Location: ./pages/vehiculos.php?error=create_failed");
+        header("Location: ../pages/vehiculos.php?error=create_failed");
     }
     
     mysqli_stmt_close($stmt);

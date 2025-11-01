@@ -21,7 +21,7 @@
         <h1>Registro de Usuario</h1>
         <p class="subtitle">Registrándose como: <span class="badge">CHOFER</span></p>
         
-        <form action="./actions/insertUser.php" method="post" enctype="multipart/form-data">
+        <form action="../actions/insertUser.php" method="post" enctype="multipart/form-data">
            
             <!-- Campo oculto con el rol quemado -->
             <input type="hidden" name="rol" value="chofer">
