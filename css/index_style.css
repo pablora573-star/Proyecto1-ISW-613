@@ -24,7 +24,8 @@ body {
   width: 100%;
 }
 
-h1, h2 {
+h1,
+h2 {
   text-align: center;
   color: #333;
   margin-bottom: 30px;
@@ -86,18 +87,10 @@ button:hover {
   background-color: #054c09;
 }
 
-.register-links {
+.buscar-link {
   margin-top: 20px;
   text-align: center;
-}
-.register-links p {
-  color: #666;
-  margin-bottom: 15px;
-  font-size: 14px;
-}
-.register-links a {
   display: inline-block;
-  margin: 5px 10px;
   padding: 8px 20px;
   text-decoration: none;
   border-radius: 4px;
@@ -105,21 +98,46 @@ button:hover {
   font-weight: bold;
   transition: all 0.3s;
 }
+.buscar-link a {
+  margin: 5px 10px;
+}
+.buscar-link a.reservacion {
+  background-color: #2196F3;
+}
+.buscar-link a.reservacion:hover {
+  background-color: #013a73;
+}
+
+.register-links {
+  margin-top: 20px;
+  text-align: center;
+  display: inline-block;
+  padding: 8px 20px;
+  text-decoration: none;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+.register-links p {
+  color: #666;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+.register-links a {
+  margin: 5px 10px;
+}
 .register-links a.pasajero {
   background-color: #4CAF50;
 }
 .register-links a.pasajero:hover {
   background-color: #054c09;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 .register-links a.chofer {
   background-color: #dd9730;
 }
 .register-links a.chofer:hover {
   background-color: #854300;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 @media (max-width: 480px) {
@@ -129,7 +147,8 @@ button:hover {
   h1 {
     font-size: 24px;
   }
-  .register-links a {
+  .register-links a,
+  .buscar-link a {
     display: block;
     margin: 10px 0;
   }

@@ -41,6 +41,7 @@ mysqli_close($conn);
     <nav>
         <h2>Aventones - Dashboard Chofer</h2>
         <div class="nav-links">
+            <a href="./editar_perfil.php" class="btn btn-edit"> Editar Perfil</a>
             <a href="./vehiculos.php">Mis Vehículos</a>
             <a href="../actions/logout.php">Cerrar Sesión</a>
         </div>

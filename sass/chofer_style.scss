@@ -14,6 +14,15 @@ nav a.btn-primary {
   }
 }
 
+nav a.btn-secondary{
+  background-color: $chofer-color;
+
+  &:hover {
+    background-color: $chofer-hover;
+  }
+
+}
+
 // Botón del formulario
 button {
   background-color: $chofer-color;

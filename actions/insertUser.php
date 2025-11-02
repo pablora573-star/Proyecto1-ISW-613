@@ -13,13 +13,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nacimiento = mysqli_real_escape_string($conn, $_POST['nacimiento']);
     $correo = mysqli_real_escape_string($conn, $_POST['correo']);
     $telefono = mysqli_real_escape_string($conn, $_POST['telefono']);
-    $rol = mysqli_real_escape_string($conn, $_POST['rol']); // "chofer" o "pasajero"
+    $rol1 = mysqli_real_escape_string($conn, $_POST['rol']); // "chofer" o "pasajero"
     $password = $_POST['password'];
     $password2 = $_POST['password2'];
 
+   $rol = match($rol1) {
+    'pasajero' => 'pasajero',
+    'chofer' => 'chofer',
+    'administrador' => 'admin'
+
+    };
     // Validar que las contraseñas coincidan
     if ($password !== $password2) {
-        header("Location: ../pages/register_$rol.php?error=password_mismatch");
+        header("Location: ../pages/registration_$rol.php?error=password_mismatch");
         exit();
     }
 
@@ -30,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $resultCheck = mysqli_stmt_get_result($checkCedula);
     
     if (mysqli_num_rows($resultCheck) > 0) {
-        header("Location: ../pages/register_$rol.php?error=cedula_exists");
+        header("Location: ../pages/registration_$rol.php?error=cedula_exists");
         exit();
     }
     mysqli_stmt_close($checkCedula);
@@ -53,13 +59,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Validar extensión
         $extensionesPermitidas = ['jpg', 'jpeg', 'png', 'gif'];
         if (!in_array($extension, $extensionesPermitidas)) {
-            header("Location: ../pages/register_$rol.php?error=invalid_image");
+            header("Location: ../pages/registration_$rol.php?error=invalid_image");
             exit();
         }
         
         // Validar tamaño (5MB máximo)
         if ($foto['size'] > 5 * 1024 * 1024) {
-            header("Location: ../pages/register_$rol.php?error=image_too_large");
+            header("Location: ../pages/registration_$rol.php?error=image_too_large");
             exit();
         }
         
@@ -77,12 +83,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (move_uploaded_file($foto['tmp_name'], $rutaDestino)) {
             $fotoRuta = '../uploads/fotos/' . $nombreArchivo;
         } else {
-            header("Location: ../pages/register_$rol.php?error=upload_failed");
+            header("Location: ../pages/registration_$rol.php?error=upload_failed");
             exit();
         }
         
     } else {
-        header("Location: ../pages/register_$rol.php?error=no_photo");
+        header("Location: ../pages/registration_$rol.php?error=no_photo");
         exit();
     }
 

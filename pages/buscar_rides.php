@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('./common/connection.php');
+include('../common/connection.php');
 
 // Parámetros de búsqueda y ordenamiento
 $origen = isset($_GET['origen']) ? mysqli_real_escape_string($conn, $_GET['origen']) : '';
@@ -16,7 +16,7 @@ $sql = "SELECT r.*,
          AND res.estado IN ('pendiente', 'aceptada')) AS asientos_reservados
         FROM rides r
         INNER JOIN users u ON r.user_id = u.id
-        LEFT JOIN vehicles v ON r.vehicle_id = v.id
+        LEFT JOIN vehiculos v ON r.vehicle_id = v.id
         WHERE r.fecha_viaje >= CURDATE()";
 
 // Filtros de búsqueda
@@ -64,10 +64,10 @@ $result = mysqli_query($conn, $sql);
         <div class="nav-links">
             <?php if (isset($_SESSION['user_id'])): ?>
                 <?php if ($_SESSION['rol'] === 'pasajero'): ?>
-                    <a href="./pages/dashboard_pasajero.php">Dashboard</a>
-                    <a href="./pages/mis_reservas_pasajero.php">Mis Reservas</a>
+                    <a href="../pages/dashboard_pasajero.php">Dashboard</a>
+                    <a href="../pages/mis_reservas_pasajero.php">Mis Reservas</a>
                 <?php else: ?>
-                    <a href="./pages/dashboard_chofer.php">Dashboard</a>
+                    <a href="../pages/dashboard_chofer.php">Dashboard</a>
                 <?php endif; ?>
                 <a href="../actions/logout.php">Cerrar Sesión</a>
             <?php else: ?>
@@ -166,7 +166,7 @@ $result = mysqli_query($conn, $sql);
                             </div>
                             
                             <?php if (isset($_SESSION['user_id']) && $_SESSION['rol'] === 'pasajero' && $asientos_disponibles > 0): ?>
-                                <a href="./pages/crear_reserva.php?ride_id=<?= $ride['id'] ?>" class="btn-reserve">
+                                <a href="../pages/crear_reserva.php?ride_id=<?= $ride['id'] ?>" class="btn-reserve">
                                     Reservar Ahora
                                 </a>
                             <?php elseif (!isset($_SESSION['user_id'])): ?>

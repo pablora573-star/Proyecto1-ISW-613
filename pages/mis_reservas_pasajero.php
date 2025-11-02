@@ -18,7 +18,7 @@ $sqlActivas = "SELECT res.*,
                FROM reservations res
                INNER JOIN rides r ON res.ride_id = r.id
                INNER JOIN users u ON res.chofer_id = u.id
-               LEFT JOIN vehicles v ON r.vehicle_id = v.id
+               LEFT JOIN vehiculos v ON r.vehicle_id = v.id
                WHERE res.pasajero_id = ?
                AND res.estado IN ('pendiente', 'aceptada')
                AND r.fecha_viaje >= CURDATE()

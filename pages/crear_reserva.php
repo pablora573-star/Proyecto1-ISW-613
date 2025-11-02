@@ -26,7 +26,7 @@ $sql = "SELECT r.*,
          AND res.estado IN ('pendiente', 'aceptada')) AS asientos_reservados
         FROM rides r
         INNER JOIN users u ON r.user_id = u.id
-        LEFT JOIN vehicles v ON r.vehicle_id = v.id
+        LEFT JOIN vehiculos v ON r.vehicle_id = v.id
         WHERE r.id = ?";
 
 $stmt = mysqli_prepare($conn, $sql);

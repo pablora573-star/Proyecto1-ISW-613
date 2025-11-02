@@ -152,6 +152,13 @@ nav a.btn-primary:hover {
   background-color: #830000;
 }
 
+nav a.btn-secondary {
+  background-color: #ff0000;
+}
+nav a.btn-secondary:hover {
+  background-color: #830000;
+}
+
 button {
   background-color: #ff0000;
 }
