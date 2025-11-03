@@ -13,7 +13,8 @@
     <nav>
         <h2>Aventones</h2>
         <div class="nav-links">
-            <!--<a href="/register_pasajero.php" class="btn-primary">Registrar Admin</a>-->
+            
+            <a href="./dashboard_admin.php">← Volver al Dashboard</a>
             <a href="../actions/logout.php">Volver al Login</a>
         </div>
     </nav>

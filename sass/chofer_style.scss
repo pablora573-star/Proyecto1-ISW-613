@@ -14,11 +14,13 @@ nav a.btn-primary {
   }
 }
 
-nav a.btn-secondary{
+nav a.btn-secondary {
   background-color: $chofer-color;
 
   &:hover {
     background-color: $chofer-hover;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   }
 
 }

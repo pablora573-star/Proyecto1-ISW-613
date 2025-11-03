@@ -171,6 +171,7 @@ $stylesrol =  match($rol) {
 
             <div class="form-section">
                 <h2>Cambiar Contraseña (Opcional)</h2>
+                <br>
                 <p class="section-info">Deja estos campos vacíos si no deseas cambiar tu contraseña</p>
                 
                 <div class="form-group">

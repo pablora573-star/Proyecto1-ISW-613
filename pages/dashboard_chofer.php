@@ -51,9 +51,6 @@ mysqli_close($conn);
         <div class="welcome">
            <?php 
    
-            
-
-   
             if (!empty($foto) && file_exists($foto)): ?>
                 <img src="<?= htmlspecialchars($foto) ?>" alt="Foto de perfil" class="foto-perfil">
             <?php else: ?>

@@ -26,8 +26,7 @@ body {
     width: 100%;
 }
 
-h1,
-h2 {
+h1,h2 {
     text-align: center;
     color: $text-dark;
     margin-bottom: 30px;
@@ -47,17 +46,16 @@ h2 {
 }
 
 .error-alert {
-    background-color: #f8d7da;
-    border: 1px solid #f5c2c7;
-    border-left: 4px solid $admin-hover;
-    color: $admin-color;
-    padding: 12px 15px;
-    margin: 15px 0 20px 0;
-    border-radius: $radius-sm;
-    font-size: 14px;
-    text-align: left;
+  background-color: #f8d7da;
+  border: 1px solid #f5c2c7;
+  border-left: 4px solid $admin-hover;
+  color: $admin-color;
+  padding: 12px 15px;
+  margin: 15px 0 20px 0;
+  border-radius: $radius-sm;
+  font-size: 14px;
+  text-align: left;
 }
-
 // Inputs
 input[type="text"],
 input[type="password"] {
@@ -76,7 +74,7 @@ input[type="password"] {
     }
 }
 
-// Botón de submit del formulario
+
 button {
     width: 100%;
     padding: 12px;
@@ -95,41 +93,9 @@ button {
 }
 
 
-.buscar-link {
-    margin-top: 20px;
-    text-align: center;
-    display: inline-block;
-    padding: 8px 20px;
-    text-decoration: none;
-    border-radius: 4px;
-    color: #fff;
-    font-weight: bold;
-    transition: all 0.3s;
-
-    a {
-
-        margin: 5px 10px;
-
-        &.reservacion {
-            background-color: #2196F3;
-
-            &:hover {
-                background-color: #013a73;
-            }
-        }
-    }
-}
-
 .register-links {
     margin-top: 20px;
     text-align: center;
-    display: inline-block;
-    padding: 8px 20px;
-    text-decoration: none;
-    border-radius: 4px;
-    color: #fff;
-    font-weight: bold;
-    transition: all 0.3s;
 
     p {
         color: $text-medium;
@@ -138,14 +104,22 @@ button {
     }
 
     a {
-
+        display: inline-block;
         margin: 5px 10px;
+        padding: 8px 20px;
+        text-decoration: none;
+        border-radius: $radius-sm;
+        color: $white;
+        font-weight: bold;
+        transition: all 0.3s;
 
         &.pasajero {
             background-color: $pasajero-color;
 
             &:hover {
                 background-color: $pasajero-hover;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
             }
         }
 
@@ -154,6 +128,18 @@ button {
 
             &:hover {
                 background-color: $chofer-hover;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            }
+        }
+
+        &.reserva{
+            background-color: #035dfa;
+
+            &:hover{
+                background-color: #002159;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
             }
         }
     }
@@ -169,8 +155,7 @@ button {
         font-size: 24px;
     }
 
-    .register-links a,
-    .buscar-link a {
+    .register-links a {
         display: block;
         margin: 10px 0;
     }

@@ -157,6 +157,8 @@ nav a.btn-secondary {
 }
 nav a.btn-secondary:hover {
   background-color: #854300;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 button {

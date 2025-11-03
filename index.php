@@ -52,10 +52,6 @@
         <h1>Login</h1>
         <h2>Aventones</h2>
 
-        <div class="buscar-link">
-            <a href="./pages/buscar_rides.php" class="reservacion">Viajes</a>
-        </div>
-
         <?php if (!empty($error_message)): ?>
         <div class="error-alert">
             <?= htmlspecialchars($error_message) ?>
@@ -71,9 +67,12 @@
         <div class="register-links">
            
             <p>¿No tienes cuenta?<br> Regístrate como:</p>
+
             <a href="./pages/registration_pasajero.php" class="pasajero">Pasajero</a>
+
             <a href="./pages/registration_chofer.php" class="chofer">Chofer</a>
-            
+       
+            <a href="./pages/buscar_rides.php" class="reserva">Viajes</a>
 
         </div>
     </div>

@@ -21,12 +21,14 @@ nav {
     gap: $spacing-lg;
 
     a {
-      color: $white;
-      text-decoration: none;
-      padding: $spacing-sm $spacing-lg;
-      border-radius: $radius-sm;
-      transition: background-color 0.3s;
-
+        display: inline-block;
+        margin: 5px 10px;
+        padding: 8px 20px;
+        text-decoration: none;
+        border-radius: $radius-sm;
+        color: $white;
+        font-weight: bold;
+        transition: all 0.3s;
       &:hover {
         background-color: $nav-hover;
       }

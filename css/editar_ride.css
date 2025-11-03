@@ -15,11 +15,14 @@ nav .nav-links {
   gap: 15px;
 }
 nav .nav-links a {
-  color: #fff;
+  display: inline-block;
+  margin: 5px 10px;
+  padding: 8px 20px;
   text-decoration: none;
-  padding: 8px 15px;
   border-radius: 4px;
-  transition: background-color 0.3s;
+  color: #fff;
+  font-weight: bold;
+  transition: all 0.3s;
 }
 nav .nav-links a:hover {
   background-color: #555;
