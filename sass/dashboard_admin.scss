@@ -1,0 +1,318 @@
+@use 'variables' as *;
+@use 'nav';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: $bg-light;
+}
+
+.container {
+    max-width: 1400px;
+    margin: $spacing-xxl auto;
+    padding: $spacing-xl;
+}
+
+// Welcome section con foto
+.welcome {
+    background: $white;
+    padding: $spacing-xxl;
+    border-radius: $radius-md;
+    margin-bottom: $spacing-xxl;
+    box-shadow: $shadow-card;
+    text-align: center;
+
+
+
+    h1 {
+        color: $text-dark;
+        margin-bottom: $spacing-md;
+    }
+
+    p {
+        color: $text-medium;
+    }
+}
+
+// Alertas
+.alert {
+    padding: $spacing-lg;
+    margin-bottom: $spacing-xl;
+    border-radius: $radius-sm;
+    border-left: 4px solid;
+
+    &.success {
+        background-color: #d4edda;
+        border-color: #28a745;
+        color: #155724;
+    }
+
+    &.error {
+        background-color: #f8d7da;
+        border-color: #dc3545;
+        color: #721c24;
+    }
+}
+
+.foto-perfil {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid $admin-color;
+    margin-bottom: $spacing-lg;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+
+// Filtros
+.filters {
+    background: $white;
+    padding: $spacing-xl;
+    border-radius: $radius-md;
+    box-shadow: $shadow-card;
+    margin-bottom: $spacing-xl;
+
+    .filter-form {
+        display: flex;
+        gap: $spacing-xl;
+        align-items: end;
+        flex-wrap: wrap;
+    }
+
+    .filter-group {
+        flex: 1;
+        min-width: 200px;
+
+        label {
+            display: block;
+            margin-bottom: $spacing-xs;
+            font-weight: bold;
+            color: $text-light;
+        }
+
+        select {
+            width: 100%;
+            padding: $spacing-md;
+            border: 1px solid $border-color;
+            border-radius: $radius-sm;
+            cursor: pointer;
+
+            &:focus {
+                outline: none;
+                border-color: $admin-color;
+            }
+        }
+    }
+
+    .btn-clear {
+        padding: $spacing-md $spacing-xl;
+        background-color: $text-medium;
+        color: $white;
+        text-decoration: none;
+        border-radius: $radius-sm;
+        font-weight: bold;
+        transition: background-color 0.3s;
+
+        &:hover {
+            background-color: $text-dark;
+        }
+    }
+}
+
+// Sección
+.section {
+    background: $white;
+    padding: $spacing-xxl;
+    border-radius: $radius-md;
+    box-shadow: $shadow-card;
+
+    h2 {
+        color: $text-dark;
+        margin-bottom: $spacing-xl;
+        padding-bottom: $spacing-md;
+        border-bottom: 2px solid $admin-color;
+    }
+}
+
+// Tabla
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: $spacing-lg;
+
+    thead {
+        background-color: $admin-color;
+
+        th {
+            padding: 12px;
+            text-align: left;
+            color: $white;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+    }
+
+    tbody {
+        tr {
+            border-bottom: 1px solid $border-color;
+            transition: background-color 0.2s;
+
+            &:hover {
+                background-color: $bg-form;
+            }
+
+            td {
+                padding: 12px;
+                font-size: 14px;
+                color: $text-medium;
+
+                &.td-foto {
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+
+// Foto de usuario en tabla
+.user-photo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+// Badges
+.badge {
+    display: inline-block;
+    padding: $spacing-xs $spacing-md;
+    border-radius: $radius-lg;
+    font-size: 12px;
+    font-weight: bold;
+
+    // Roles
+    &.badge-administrador {
+        background-color: $admin-color;
+        color: $white;
+    }
+
+    &.badge-chofer {
+        background-color: $chofer-color;
+        color: $white;
+    }
+
+    &.badge-pasajero {
+        background-color: $pasajero-color;
+        color: $white;
+    }
+
+    // Estados
+    &.badge-estado-activa {
+        background-color: #28a745;
+        color: $white;
+    }
+
+    &.badge-estado-pendiente {
+        background-color: #ffc107;
+        color: #856404;
+    }
+
+    &.badge-estado-inactiva {
+        background-color: #dc3545;
+        color: $white;
+    }
+}
+
+// Botones de acción
+.actions {
+    white-space: nowrap;
+
+    .btn-action {
+        display: inline-block;
+        padding: $spacing-xs $spacing-md;
+        text-decoration: none;
+        border-radius: $radius-sm;
+        font-size: 12px;
+        font-weight: bold;
+        transition: all 0.3s;
+
+        &.btn-activate {
+            background-color: #28a745;
+            color: $white;
+
+            &:hover {
+                background-color: #218838;
+            }
+        }
+
+        &.btn-deactivate {
+            background-color: #dc3545;
+            color: $white;
+
+            &:hover {
+                background-color: #c82333;
+            }
+        }
+    }
+
+    .text-muted {
+        color: $text-light;
+        font-style: italic;
+    }
+}
+
+// Sin datos
+.no-data {
+    text-align: center;
+    padding: $spacing-xxl;
+    color: $text-medium;
+    font-style: italic;
+}
+
+// Responsive
+@media (max-width: 768px) {
+    .container {
+        padding: $spacing-md;
+    }
+
+    .filters .filter-form {
+        flex-direction: column;
+
+        .filter-group {
+            width: 100%;
+        }
+
+        .btn-clear {
+            width: 100%;
+            text-align: center;
+        }
+    }
+
+    table {
+        font-size: 12px;
+
+        th,
+        td {
+            padding: $spacing-sm;
+        }
+    }
+
+    .user-photo {
+        width: 30px;
+        height: 30px;
+    }
+}
